@@ -1,0 +1,83 @@
+/* General Reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif; /* Sets font for the page */
+    background-color: #f4f4f9; /* Light background color */
+    color: #333; /* Dark text color for readability */
+    line-height: 1.6; /* Ensures text has good line spacing */
+    padding: 20px;
+}
+
+/* Heading Style */
+h2 {
+    font-size: 24px; 
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #3498db; 
+    padding-bottom: 5px;
+}
+
+/* Paragraph Styling */
+p {
+    font-size: 16px;
+    margin-bottom: 15px; 
+    text-align: justify; 
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+h2:first-of-type {
+    margin-top: 20px;
+}
+
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 15px; 
+    }
+
+    h2 {
+        font-size: 20px; 
+    }
+
+    p {
+        font-size: 14px; 
+    }
+}
+.hero-btn {
+    position: fixed; 
+    bottom: 20px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background-color: #323533; 
+    color: white;
+    padding: 12px 25px; 
+    border-radius: 30px; 
+    text-decoration: none;
+    font-size: 1.1em; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: all 0.3s ease; 
+    z-index: 9999; 
+}
+
+.hero-btn:hover {
+    background-color: #597063; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+    transform: translateX(-50%) translateY(-4px); 
+}
+
+.hero-btn:active {
+    background-color: #84601e; 
+    transform: translateX(-50%) translateY(2px);
+}

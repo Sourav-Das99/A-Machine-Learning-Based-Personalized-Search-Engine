@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Video</title>
+    <link rel="stylesheet" href="static/config.css">
+</head>
+<body>
+    <h3>Upload Video</h3>
+    <form action="http://localhost/NEW/upload.php" method="post" enctype="multipart/form-data">
+        <label for="vname">Video Name:</label>
+        <input type="text" id="vname" name="vname" required><br><br>
+
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre" required><br><br>
+
+        <label for="tags">Tags:</label>
+        <input type="text" id="tags" name="tags" required><br><br>
+
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required><br><br>
+
+        <label for="video">Video File:</label>
+        <input type="file" id="video" name="video" accept="video/*" required><br><br>
+
+        <label for="pdf">PDF Note (Optional):</label>
+        <input type="file" id="pdf" name="pdf" accept="application/pdf"><br><br>
+
+        <button type="submit">Upload Video</button>
+    </form>
+     <a href="{{ url_for('home') }}" class="hero-btn">Home</a>
+</body>
+</html>

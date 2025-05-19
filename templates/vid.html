@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Viewer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='videos.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="bil">
+        <h1>Start learning</h1>
+        <form method="POST">
+            <label for="video_name">Enter Something</label>
+            <br>
+            <div class="bxx">
+                <input type="text" id="video_name" name="video_name" placeholder="Enter Something...">
+                <button type="button" class="speechBtn" id="speechBtn"><i class="fa fa-microphone"></i></button>
+            </div>
+            <input type="hidden" id="video_name_from_speech" name="video_name_from_speech">
+            <button type="submit" class="submit">Submit</button>
+            <br>
+
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
+
+            <div class="video-container">
+                <br>
+                {% if videos %}
+                    {% for video in videos %}
+                        <div class="video-card">
+                            <video controls>
+                                <source src="{{ url_for('static', filename='videos/' + video.location.split('/')[-1]) }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <p class="video-title">{{ video.vname }}</p>
+                            <p class="video-tags">{{ video.tags }}</p>
+                        
+                            {% if video.pdf_url %}
+                                <p><a href="{{ video.pdf_url }}" download>Download PDF Notes</a></p>
+                            {% else %}
+                                <p>No PDF notes available</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No videos available</p>
+                {% endif %}
+            </div>
+            
+        </form>
+        <br>
+        <a href="{{ url_for('home') }}" class="hero-btn">Home</a>
+    </div>
+
+    <script>
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        const speechBtn = document.getElementById("speechBtn");
+        const videoNameInput = document.getElementById("video_name");
+
+        recognition.lang = "en-US";
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        speechBtn.onclick = function () {
+            recognition.start();
+            console.log("Voice recognition started");
+        };
+
+        recognition.onresult = function (event) {
+            const transcript = event.results[0][0].transcript;
+            console.log("Recognized Speech: ", transcript);
+            videoNameInput.value = transcript;
+            // Set the hidden field for speech input
+            document.getElementById("video_name_from_speech").value = transcript;
+        };
+
+        recognition.onerror = function (event) {
+            console.error("Speech recognition error: ", event.error);
+        };
+    </script>
+</body>
+</html>

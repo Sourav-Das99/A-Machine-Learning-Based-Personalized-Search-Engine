@@ -1,0 +1,73 @@
+/* config.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h3 {
+    text-align: center;
+    color: #333;
+    margin-top: 40px; /* Adds space from the top of the page */
+    font-size: 2em; /* Increases font size for better visibility */
+}
+
+form {
+    max-width: 600px;
+    margin: 20px auto; /* Adds margin at the top and bottom for spacing */
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+label {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"],
+input[type="file"] {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 90%;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+a.hero-btn {
+    display: block;
+    text-align: center;
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 1em;
+    border-radius: 4px;
+    margin: 20px auto 40px auto; /* Adds spacing around the button and centers it */
+    width: 100px;
+}
+
+a.hero-btn:hover {
+    background-color: #0056b3;
+}

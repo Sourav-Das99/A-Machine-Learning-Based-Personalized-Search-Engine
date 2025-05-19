@@ -1,0 +1,176 @@
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+/* Form Container */
+.bil {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: inline-block;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 450px;
+    margin: 0 auto;
+}
+.bxx {
+    display: flex;
+    align-items: center;
+   
+    gap: 6px;
+    margin-top: 20px;
+}
+
+label {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.submit {
+    background-color: #3498db;
+    color: rgb(1, 29, 20);
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color: #df7878;
+}
+
+
+.error-message {
+    color: red;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+.video-card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    text-align:center;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #ddd;
+}
+
+
+
+.video-cards-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows the video cards to wrap to the next line if necessary */
+    justify-content: flex-start; /* Align items to the left */
+    gap: 20px; /* Adds space between the video cards */
+}
+
+.video-title {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #2c3e50;
+    padding: 10px 0;
+}
+
+.video-tags {
+    font-style: italic;
+    color: #7f8c8d;
+    padding-bottom: 15px;
+}
+
+.hero-btn {
+    position: fixed; /* Fixed positioning to stick the button to the bottom */
+    bottom: 20px; 
+    left: 50%; /* Position the button in the center horizontally */
+    transform: translateX(-50%); /* Adjust for the exact horizontal center */
+    background-color: #2ecc71; /* Green color for the button */
+    color: white;
+    padding: 12px 25px; /* Increased padding for a larger button */
+    border-radius: 30px; /* Rounded button with a larger border radius */
+    text-decoration: none;
+    font-size: 1.1em; /* Slightly larger font size */
+    font-weight: bold; /* Make the text bold */
+    text-transform: uppercase; /* Uppercase text for a more modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow to give it a floating effect */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+    z-index: 9999; /* Ensure the button is on top of other content */
+}
+
+.hero-btn:hover {
+    background-color: #27ae60; /* Darker green on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Slightly stronger shadow on hover */
+    transform: translateX(-50%) translateY(-4px); /* Lift effect on hover */
+}
+
+.hero-btn:active {
+    background-color: #1e8449; /* Even darker green when clicked */
+    transform: translateX(-50%) translateY(2px); /* Slight pressing effect on click */
+}
+i {
+    color: #0c0c0c;
+    font-size: 13px;
+}
+.speechBtn {
+    background-color: #d7ecd7;  
+    border: none;
+    margin-bottom: 15px;
+    color: white;
+    padding: 11px;
+    border-radius: 20%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .speechBtn i {
+    font-size: 24px;  
+  }
+  
