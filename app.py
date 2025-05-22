@@ -6,6 +6,16 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
 import voice 
 import webbrowser
+from flask import Flask, render_template, request, redirect, session, url_for
+from werkzeug.security import generate_password_hash, check_password_hash
+import mysql.connector
+import os
+
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'
+
+# Your DB connection and route handlers come next...
+
 
 app = Flask(__name__, static_folder="static")
 
@@ -15,7 +25,7 @@ def connect_to_database():
             host=os.getenv("DB_HOST", "localhost"),
             user=os.getenv("DB_USER", "root"),
             password=os.getenv("DB_PASS", ""),
-            database=os.getenv("DB_NAME", "dbase")
+            database=os.getenv("DB_NAME", "nbase")
         )
         return connection
     except mysql.connector.Error as e:
@@ -86,8 +96,72 @@ def recommend_videos(input_video_name, limit=3):
     
     return recommended_videos
 
+"""com"""
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = generate_password_hash(request.form['password'])
+
+        connection = connect_to_database()
+        cursor = connection.cursor()
+        try:
+            cursor.execute("INSERT INTO students (name, email, password) VALUES (%s, %s, %s)",
+                           (name, email, password))
+            connection.commit()
+            return redirect(url_for('login_student'))
+        except mysql.connector.IntegrityError:
+            return render_template('register.html', error="Email already registered.")
+        finally:
+            cursor.close()
+            connection.close()
+
+    return render_template('register.html')
 
 
+@app.route('/login_student', methods=['GET', 'POST'])
+def login_student():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        connection = connect_to_database()
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM students WHERE email = %s", (email,))
+        user = cursor.fetchone()
+        cursor.close()
+        connection.close()
+
+        if user and check_password_hash(user['password'], password):
+            session['student_id'] = user['id']
+            session['student_name'] = user['name']
+            return redirect(url_for('student_profile'))
+        else:
+            return render_template('login_student.html', error="Invalid credentials")
+
+    return render_template('login_student.html')
+
+
+@app.route('/profile')
+def student_profile():
+    if 'student_id' not in session:
+        return redirect(url_for('login_student'))
+
+    return render_template('profile.html', name=session['student_name'])
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login_student'))
+
+
+
+
+
+"""com"""
 
 @app.route('/')
 def home():

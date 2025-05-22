@@ -37,19 +37,34 @@
                             <p class="video-title">{{ video.vname }}</p>
                             <p class="video-tags">{{ video.tags }}</p>
                         
-                            {% if video.pdf_url %}
+                            {% if video.pdf_url %}    
                                 <p><a href="{{ video.pdf_url }}" download>Download PDF Notes</a></p>
                             {% else %}
                                 <p>No PDF notes available</p>
                             {% endif %}
+
+                            <!-- Rating Form -->
+                            <form action="{{ url_for('rate_video') }}" method="POST">
+                                <input type="hidden" name="video_id" value="{{ video.id }}">
+                                <label for="rating">Rate this video:</label>
+                                <select name="rating" required>
+                                    <option value="">Select rating</option>
+                                    <option value="5">⭐ Excellent</option>
+                                    <option value="4">👍 Good</option>
+                                    <option value="3">👌 Average</option>
+                                    <option value="2">👎 Poor</option>
+                                    <option value="1">💩 Bad</option>
+                                </select>
+                                <button type="submit">Submit</button>
+                            </form>
                         </div>
                     {% endfor %}
                 {% else %}
                     <p>No videos available</p>
                 {% endif %}
             </div>
-            
         </form>
+
         <br>
         <a href="{{ url_for('home') }}" class="hero-btn">Home</a>
     </div>
@@ -73,7 +88,6 @@
             const transcript = event.results[0][0].transcript;
             console.log("Recognized Speech: ", transcript);
             videoNameInput.value = transcript;
-            // Set the hidden field for speech input
             document.getElementById("video_name_from_speech").value = transcript;
         };
 
